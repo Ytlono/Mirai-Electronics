@@ -1,44 +1,39 @@
 package com.example.MiraiElectronics.controller;
 
 import com.example.MiraiElectronics.dto.UpdateUserDataDTO;
-import com.example.MiraiElectronics.dto.UserSessionDTO;
 import com.example.MiraiElectronics.repository.realization.User;
-import com.example.MiraiElectronics.service.Parser.UserParserService;
-import com.example.MiraiElectronics.service.SessionService;
+import com.example.MiraiElectronics.service.CustomUserDetails;
 import com.example.MiraiElectronics.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
 public class CustomerController extends BaseController{
     private final UserService userService;
 
-    public CustomerController(SessionService sessionService, UserService userService) {
-        super(sessionService);
+    public CustomerController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping
-    public ResponseEntity<?> getUserProfile(HttpServletRequest request) {
-        return ResponseEntity.ok(getFullUserOrThrow(request));
+    public ResponseEntity<?> getUserProfile(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        return ResponseEntity.ok(getFullUserOrThrow(userDetails));
     }
 
     @PutMapping
-    public ResponseEntity<?> updateUserData(@Valid @RequestBody UpdateUserDataDTO updateUserDataDTO, HttpServletRequest request) {
-        User userUpdate = userService.updateUser(getFullUserOrThrow(request), updateUserDataDTO);
-        sessionService.saveUserToSession(request, userUpdate);
+    public ResponseEntity<?> updateUserData(@Valid @RequestBody UpdateUserDataDTO updateUserDataDTO,
+                                            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        User userUpdate = userService.updateUser(getFullUserOrThrow(userDetails), updateUserDataDTO);
+//        sessionService.saveUserToSession(request, userUpdate);
         return ResponseEntity.ok(userUpdate);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteUser(HttpServletRequest request) {
-        userService.delete(getFullUserOrThrow(request));
+    public ResponseEntity<?> deleteUser(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        userService.delete(getFullUserOrThrow(userDetails));
         return ResponseEntity.ok("deleted");
     }
 }

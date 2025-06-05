@@ -48,16 +48,4 @@ public class ConfirmationService {
         confirmationCodes.remove(email);
         pendingUsers.remove(email);
     }
-
-    public void savePendingUser(String email, RegisterDTO registerDTO) {
-        pendingUsers.put(email, registerDTO);
-    }
-
-    public RegisterDTO getPendingUser(String email) {
-        return pendingUsers.get(email);
-    }
-
-    public void removePendingUser(String email) {
-        pendingUsers.remove(email);
-    }
 }

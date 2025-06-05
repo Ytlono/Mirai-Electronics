@@ -1,16 +1,15 @@
 package com.example.MiraiElectronics.controller;
 
 import com.example.MiraiElectronics.dto.OrderRequest;
-import com.example.MiraiElectronics.repository.realization.Order;
+import com.example.MiraiElectronics.dto.OrderStateUpdateDTO;
+import com.example.MiraiElectronics.service.CustomUserDetails;
 import com.example.MiraiElectronics.service.OrderService;
-import com.example.MiraiElectronics.service.SessionService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -18,43 +17,43 @@ import java.util.Map;
 public class OrderController extends BaseController{
     private final OrderService orderService;
 
-    public OrderController(SessionService sessionService, OrderService orderService) {
-        super(sessionService);
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
     @GetMapping
-    public ResponseEntity<?> getUserOrders(HttpServletRequest request){
+    public ResponseEntity<?> getUserOrders(@AuthenticationPrincipal CustomUserDetails userDetails){
         return ResponseEntity.ok(orderService.getUserOrders(
-                sessionService.getFullUserFromSession(request))
+                getFullUserOrThrow(userDetails))
         );
     }
     
     @GetMapping("/getOrder")
-    public ResponseEntity<?> getOrderById(@RequestParam Long orderId, HttpServletRequest request) {
-        Order order = orderService.getOrderByIdAndUserId(orderId, getFullUserOrThrow(request));
-        if (order == null)
-            return ResponseEntity.notFound().build();
-
-        return ResponseEntity.ok(order);
+    public ResponseEntity<?> getOrderById(@RequestParam Long orderId,
+                                          @AuthenticationPrincipal CustomUserDetails userDetails) {
+        return ResponseEntity.ok(
+                orderService.getOrderByIdAndUserId(
+                        orderId, getFullUserOrThrow(userDetails))
+        );
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderRequest orderRequest, HttpServletRequest request) {
-        ResponseEntity<?> order = orderService.makeOrder(orderRequest, getFullUserOrThrow(request));
+    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderRequest orderRequest,
+                                         @AuthenticationPrincipal CustomUserDetails userDetails) {
+        ResponseEntity<?> order = orderService.makeOrder(orderRequest, getFullUserOrThrow(userDetails));
         return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }
     
     @DeleteMapping
-    public ResponseEntity<?> cancelOrder(@RequestParam Long orderId, HttpServletRequest request) {
-        orderService.cancelOrder(orderId,  getFullUserOrThrow(request));
+    public ResponseEntity<?> cancelOrder(@RequestParam Long orderId,
+                                         @AuthenticationPrincipal CustomUserDetails userDetails) {
+        orderService.cancelOrder(orderId,  getFullUserOrThrow(userDetails));
         return ResponseEntity.ok(Map.of("message", "Заказ отменен"));
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateOrderState(){
-
-        return ResponseEntity.ok(1);
+    @PutMapping("/update-status")
+    public ResponseEntity<?> updateOrderState(@RequestBody OrderStateUpdateDTO orderStateUpdateDTO){
+        return ResponseEntity.ok(orderService.updateOrderStatus(orderStateUpdateDTO.getOrderId(),orderStateUpdateDTO.getStatus()));
     }
 
 }

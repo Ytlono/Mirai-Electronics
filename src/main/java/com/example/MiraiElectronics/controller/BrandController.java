@@ -2,7 +2,6 @@ package com.example.MiraiElectronics.controller;
 
 import com.example.MiraiElectronics.dto.BrandDTO;
 import com.example.MiraiElectronics.service.BrandService;
-import com.example.MiraiElectronics.service.SessionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +13,9 @@ public class BrandController extends BaseController{
 
     private final BrandService brandService;
 
-    public BrandController(SessionService sessionService, BrandService brandService) {
-        super(sessionService);
+    public BrandController(BrandService brandService) {
         this.brandService = brandService;
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getBrandById(@PathVariable Long id){

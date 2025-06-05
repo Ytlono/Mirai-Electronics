@@ -8,15 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
-    private final CategoryRepository categoryRepository;
-
-    public MainController(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
-
     @GetMapping("/")
     public String home(Model model){
-        model.addAttribute("categories",categoryRepository.findAll());
         return "home";
     }
 }

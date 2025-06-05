@@ -22,7 +22,6 @@ public class CategoryController {
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-
     @GetMapping("/get")
     public ResponseEntity<?> getCategory(@RequestParam Long id) {
         return ResponseEntity.ok(categoryService.findById(id));

@@ -2,8 +2,12 @@ package com.example.MiraiElectronics.service;
 
 import com.example.MiraiElectronics.dto.AuthRequest;
 import com.example.MiraiElectronics.dto.RegisterDTO;
+import com.example.MiraiElectronics.dto.response.AuthResponse;
 import com.example.MiraiElectronics.repository.repositoryEnum.Role;
 import com.example.MiraiElectronics.repository.realization.User;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +18,16 @@ public class AuthService {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final CartService cartService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    public AuthService(UserService userService, PasswordEncoder passwordEncoder, CartService cartService) {
+    public AuthService(UserService userService, PasswordEncoder passwordEncoder, CartService cartService, AuthenticationManager authenticationManager, JwtService jwtService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.cartService = cartService;
+        this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
-
 
     public void register(RegisterDTO registerRequest){
         User user = User.builder()
@@ -35,12 +42,25 @@ public class AuthService {
         cartService.createCart(user);
     }
 
-    public User login(AuthRequest authRequest) {
-        User user = userService.findByUsername(authRequest.getUsername());
+    public AuthResponse login(AuthRequest authRequest) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        authRequest.getUsername(),
+                        authRequest.getPassword()
+                )
+        );
+        var  user  = userService.findByUsername(authRequest.getUsername());
+        var  jwtToken  = jwtService.generateToken(user.getUsername());
+        return AuthResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
 
-        if (user == null || !passwordEncoder.matches(authRequest.getPassword(), user.getPassword()))
-            return null;
-
-        return user;
+    public User getCurrentUserEntity() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof CustomUserDetails customUserDetails) {
+            return customUserDetails.getUser();
+        }
+        throw new RuntimeException("User not authenticated");
     }
 }

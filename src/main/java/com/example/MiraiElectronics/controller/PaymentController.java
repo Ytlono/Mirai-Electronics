@@ -1,19 +1,10 @@
 package com.example.MiraiElectronics.controller;
 
-import com.example.MiraiElectronics.dto.CardDTO;
 import com.example.MiraiElectronics.dto.TopUpBalanceDTO;
-import com.example.MiraiElectronics.repository.realization.Transaction;
-import com.example.MiraiElectronics.repository.realization.User;
-import com.example.MiraiElectronics.service.CardService;
-import com.example.MiraiElectronics.service.PaymentService;
-import com.example.MiraiElectronics.service.SessionService;
-import com.example.MiraiElectronics.service.TransactionService;
-import jakarta.servlet.http.HttpServletRequest;
+import com.example.MiraiElectronics.service.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/payment")
@@ -21,27 +12,27 @@ public class PaymentController extends BaseController {
     private final PaymentService paymentService;
     private final TransactionService transactionService;
 
-    public PaymentController(SessionService sessionService, PaymentService paymentService, TransactionService transactionService) {
-        super(sessionService);
+    public PaymentController(PaymentService paymentService, TransactionService transactionService) {
         this.paymentService = paymentService;
         this.transactionService = transactionService;
     }
 
     @PostMapping("/top-up")
-    public ResponseEntity<?> topUpBalance(@RequestBody TopUpBalanceDTO dto, HttpServletRequest request) {
+    public ResponseEntity<?> topUpBalance(@RequestBody TopUpBalanceDTO dto,
+                                          @AuthenticationPrincipal CustomUserDetails userDetails) {
         return ResponseEntity.ok(
                 "Balance topped up successfully. New balance: " +
                 paymentService.topUpUserBalanceFromCard(
-                dto.getCardId(), dto.getSum(), getFullUserOrThrow(request))
+                dto.getCardId(), dto.getSum(), getFullUserOrThrow(userDetails))
         );
     }
 
 
     @GetMapping("/history")
-    public ResponseEntity<?> getTransactionHistory(HttpServletRequest request) {
+    public ResponseEntity<?> getTransactionHistory(@AuthenticationPrincipal CustomUserDetails userDetails) {
         return ResponseEntity.ok(
                 transactionService.getAllTransactions(
-                        getFullUserOrThrow(request))
+                        getFullUserOrThrow(userDetails))
         );
     }
 }

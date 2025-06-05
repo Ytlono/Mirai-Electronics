@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Primary;
 
 @Service
 @Primary
-public class UserService extends GenericEntityService<User,Long> implements UserDetailsService{
+public class UserService extends GenericEntityService<User,Long>{
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
@@ -23,18 +23,6 @@ public class UserService extends GenericEntityService<User,Long> implements User
         super(userRepository);
         this.userRepository = userRepository;
         this.userMapper = userMapper;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .roles(user.getRole().toString())
-                .build();
     }
 
     public User findByUsername(String username) {
