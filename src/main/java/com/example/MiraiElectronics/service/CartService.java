@@ -1,10 +1,10 @@
 package com.example.MiraiElectronics.service;
 
-import com.example.MiraiElectronics.repository.realization.Cart;
-import com.example.MiraiElectronics.repository.realization.CartItem;
-import com.example.MiraiElectronics.repository.CartRepository;
-import com.example.MiraiElectronics.repository.realization.Product;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.realization.Cart;
+import com.example.MiraiElectronics.repository.JPA.realization.CartItem;
+import com.example.MiraiElectronics.repository.JPA.interfaces.CartRepository;
+import com.example.MiraiElectronics.repository.JPA.realization.Product;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import com.example.MiraiElectronics.service.Generic.GenericEntityService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

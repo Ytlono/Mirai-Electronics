@@ -1,7 +1,7 @@
 package com.example.MiraiElectronics.controller;
 
 import com.example.MiraiElectronics.dto.UpdateUserDataDTO;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import com.example.MiraiElectronics.service.CustomUserDetails;
 import com.example.MiraiElectronics.service.UserService;
 import jakarta.validation.Valid;

@@ -3,9 +3,8 @@ package com.example.MiraiElectronics.controller;
 import com.example.MiraiElectronics.dto.FilterDTO;
 import com.example.MiraiElectronics.dto.ProductDTO;
 import com.example.MiraiElectronics.dto.UpdatePrice;
-import com.example.MiraiElectronics.repository.realization.Product;
+import com.example.MiraiElectronics.repository.JPA.realization.Product;
 import com.example.MiraiElectronics.service.ProductServices.ProductService;
-import com.example.MiraiElectronics.service.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -67,6 +66,11 @@ public class ProductController {
     @PutMapping("/change-price")
     public ResponseEntity<?> updateProductPrice(@RequestBody UpdatePrice updatePrice){
         return ResponseEntity.ok(productService.changePrice(updatePrice));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> search(@RequestParam String query){
+        return ResponseEntity.ok(productService.searchProductViaElastic(query));
     }
 
 }

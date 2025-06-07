@@ -1,7 +1,7 @@
 package com.example.MiraiElectronics.listeners.Reminders;
 
 import com.example.MiraiElectronics.events.OrderSatusUpdateEvent;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import com.example.MiraiElectronics.service.CartItemService;
 import com.example.MiraiElectronics.service.JavaMailSenderService;
 import com.example.MiraiElectronics.service.OrderService;

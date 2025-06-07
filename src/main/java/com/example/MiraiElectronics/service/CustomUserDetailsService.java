@@ -1,13 +1,11 @@
 package com.example.MiraiElectronics.service;
 
-import com.example.MiraiElectronics.repository.UserRepository;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.interfaces.UserRepository;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

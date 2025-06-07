@@ -1,4 +1,4 @@
-package com.example.MiraiElectronics.repository.realization;
+package com.example.MiraiElectronics.repository.JPA.realization;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
 package com.example.MiraiElectronics.service;
 
-import com.example.MiraiElectronics.repository.realization.Card;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.realization.Card;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import com.example.MiraiElectronics.repository.repositoryEnum.TransactionType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

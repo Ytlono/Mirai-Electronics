@@ -1,6 +1,6 @@
 package com.example.MiraiElectronics.service;
 
-import com.example.MiraiElectronics.repository.UserRepository;
+import com.example.MiraiElectronics.repository.JPA.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;

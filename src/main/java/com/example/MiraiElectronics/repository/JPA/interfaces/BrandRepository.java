@@ -1,6 +1,6 @@
-package com.example.MiraiElectronics.repository;
+package com.example.MiraiElectronics.repository.JPA.interfaces;
 
-import com.example.MiraiElectronics.repository.realization.Brand;
+import com.example.MiraiElectronics.repository.JPA.realization.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BrandRepository extends JpaRepository<Brand,Long> {

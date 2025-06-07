@@ -1,13 +1,11 @@
 package com.example.MiraiElectronics.service;
 
 import com.example.MiraiElectronics.dto.CardDTO;
-import com.example.MiraiElectronics.repository.CardRepository;
-import com.example.MiraiElectronics.repository.realization.Card;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.interfaces.CardRepository;
+import com.example.MiraiElectronics.repository.JPA.realization.Card;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import com.example.MiraiElectronics.service.Generic.GenericEntityService;
 import com.example.MiraiElectronics.service.Parser.CardParserService;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

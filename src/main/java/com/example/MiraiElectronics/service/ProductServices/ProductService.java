@@ -6,14 +6,17 @@ import com.example.MiraiElectronics.dto.ProductDTO;
 import com.example.MiraiElectronics.dto.UpdatePrice;
 import com.example.MiraiElectronics.dto.UpdateStockQuantity;
 import com.example.MiraiElectronics.events.ProductPriceChangedEvent;
-import com.example.MiraiElectronics.repository.realization.Product;
-import com.example.MiraiElectronics.repository.ProductRepository;
+import com.example.MiraiElectronics.repository.Elasticsearch.interfaces.ProductElasticsearchRepository;
+import com.example.MiraiElectronics.repository.Elasticsearch.realization.ProductDocument;
+import com.example.MiraiElectronics.repository.JPA.realization.Product;
+import com.example.MiraiElectronics.repository.JPA.interfaces.ProductRepository;
 import com.example.MiraiElectronics.service.CategoryService;
 import com.example.MiraiElectronics.service.DomainEventPublisher;
 import com.example.MiraiElectronics.service.FilterServices.FilterService;
 import com.example.MiraiElectronics.service.Generic.GenericEntityService;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,15 +29,16 @@ public class ProductService extends GenericEntityService<Product,Long>{
     private final CategoryService categoryService;
     private final ProductMapper productMapper;
     private final DomainEventPublisher domainEventPublisher;
+    private final ProductElasticsearchRepository productElasticsearchRepository;
 
-    public ProductService(ProductRepository productRepository, CategoryService categoryService, ProductMapper productMapper, DomainEventPublisher domainEventPublisher) {
+    public ProductService(ProductRepository productRepository, CategoryService categoryService, ProductMapper productMapper, DomainEventPublisher domainEventPublisher, ProductElasticsearchRepository productElasticsearchRepository) {
         super(productRepository);
         this.productRepository = productRepository;
         this.categoryService = categoryService;
         this.productMapper = productMapper;
         this.domainEventPublisher = domainEventPublisher;
+        this.productElasticsearchRepository = productElasticsearchRepository;
     }
-
 
     public Product addProduct(ProductDTO productDTO){return productRepository.save(toEntity(productDTO));}
 
@@ -106,6 +110,23 @@ public class ProductService extends GenericEntityService<Product,Long>{
         Sort sort = getSort(sortId);
 
         return productRepository.findAll(spec, sort);
+    }
+
+
+    public List<Product> searchProductViaElastic(String query){
+        List<ProductDocument> productDocuments = productElasticsearchRepository.searchByQuery(query);
+
+        Map<Long,Integer> idsMap = new HashMap<>();
+        for (int i = 0; i<productDocuments.size();i++){
+            idsMap.put(productDocuments.get(i).getProductId(),i);
+        }
+
+        List<Product> productsDb = productRepository.findAllById(idsMap.keySet());
+        productsDb.sort(
+                Comparator.comparing(
+                        product -> idsMap.get(product.getProductId()))
+        );
+        return productsDb;
     }
 
     public Product toEntity(ProductDTO dto) {

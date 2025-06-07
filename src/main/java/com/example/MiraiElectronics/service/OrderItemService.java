@@ -1,13 +1,12 @@
 package com.example.MiraiElectronics.service;
 
-import com.example.MiraiElectronics.repository.OrderItemRepository;
-import com.example.MiraiElectronics.repository.realization.CartItem;
-import com.example.MiraiElectronics.repository.realization.Order;
-import com.example.MiraiElectronics.repository.realization.OrderItem;
+import com.example.MiraiElectronics.repository.JPA.interfaces.OrderItemRepository;
+import com.example.MiraiElectronics.repository.JPA.realization.CartItem;
+import com.example.MiraiElectronics.repository.JPA.realization.Order;
+import com.example.MiraiElectronics.repository.JPA.realization.OrderItem;
 import com.example.MiraiElectronics.service.Generic.GenericEntityService;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

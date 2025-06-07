@@ -2,7 +2,7 @@ package com.example.MiraiElectronics.Mapper;
 
 import com.example.MiraiElectronics.dto.AddressDTO;
 import com.example.MiraiElectronics.dto.UpdateUserDataDTO;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")

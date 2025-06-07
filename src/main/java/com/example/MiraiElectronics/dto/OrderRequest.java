@@ -1,9 +1,7 @@
 package com.example.MiraiElectronics.dto;
 
-import com.example.MiraiElectronics.repository.realization.OrderItem;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -2,8 +2,8 @@ package com.example.MiraiElectronics.service;
 
 import com.example.MiraiElectronics.Mapper.BrandMapper;
 import com.example.MiraiElectronics.dto.BrandDTO;
-import com.example.MiraiElectronics.repository.BrandRepository;
-import com.example.MiraiElectronics.repository.realization.Brand;
+import com.example.MiraiElectronics.repository.JPA.interfaces.BrandRepository;
+import com.example.MiraiElectronics.repository.JPA.realization.Brand;
 import com.example.MiraiElectronics.service.Generic.GenericEntityService;
 import org.springframework.stereotype.Service;
 

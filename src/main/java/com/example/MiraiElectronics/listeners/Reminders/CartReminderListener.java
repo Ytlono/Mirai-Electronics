@@ -1,8 +1,8 @@
 package com.example.MiraiElectronics.listeners.Reminders;
 
 import com.example.MiraiElectronics.events.AbandonedCartDetectedEvent;
-import com.example.MiraiElectronics.repository.realization.CartItem;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.realization.CartItem;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import com.example.MiraiElectronics.service.CartItemService;
 import com.example.MiraiElectronics.service.JavaMailSenderService;
 import org.springframework.context.event.EventListener;

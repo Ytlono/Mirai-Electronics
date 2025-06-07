@@ -1,6 +1,6 @@
 package com.example.MiraiElectronics.events;
 
-import com.example.MiraiElectronics.repository.realization.CartItem;
+import com.example.MiraiElectronics.repository.JPA.realization.CartItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

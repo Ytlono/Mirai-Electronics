@@ -1,4 +1,4 @@
-package com.example.MiraiElectronics.repository.realization;
+package com.example.MiraiElectronics.repository.JPA.realization;
 
 
 import jakarta.persistence.*;

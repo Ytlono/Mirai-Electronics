@@ -4,7 +4,7 @@ import com.example.MiraiElectronics.dto.AuthRequest;
 import com.example.MiraiElectronics.dto.RegisterDTO;
 import com.example.MiraiElectronics.dto.response.AuthResponse;
 import com.example.MiraiElectronics.repository.repositoryEnum.Role;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

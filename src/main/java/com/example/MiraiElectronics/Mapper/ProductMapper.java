@@ -1,5 +1,5 @@
 package com.example.MiraiElectronics.Mapper;
-import com.example.MiraiElectronics.repository.realization.Product;
+import com.example.MiraiElectronics.repository.JPA.realization.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

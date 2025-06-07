@@ -1,6 +1,6 @@
 package com.example.MiraiElectronics.service.FilterServices;
 
-import com.example.MiraiElectronics.repository.realization.Product;
+import com.example.MiraiElectronics.repository.JPA.realization.Product;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 

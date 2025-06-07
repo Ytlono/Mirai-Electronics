@@ -2,13 +2,12 @@ package com.example.MiraiElectronics.schedulers;
 
 
 import com.example.MiraiElectronics.events.AbandonedCartDetectedEvent;
-import com.example.MiraiElectronics.repository.realization.CartItem;
+import com.example.MiraiElectronics.repository.JPA.realization.CartItem;
 import com.example.MiraiElectronics.service.CartItemService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;

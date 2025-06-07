@@ -1,8 +1,7 @@
-package com.example.MiraiElectronics.repository;
+package com.example.MiraiElectronics.repository.JPA.interfaces;
 
-import com.example.MiraiElectronics.repository.realization.Card;
-import com.example.MiraiElectronics.repository.realization.Transaction;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.realization.Transaction;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

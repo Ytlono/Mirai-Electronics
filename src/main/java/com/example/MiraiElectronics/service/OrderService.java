@@ -2,10 +2,10 @@ package com.example.MiraiElectronics.service;
 
 import com.example.MiraiElectronics.dto.OrderRequest;
 import com.example.MiraiElectronics.events.OrderSatusUpdateEvent;
-import com.example.MiraiElectronics.repository.OrderRepository;
-import com.example.MiraiElectronics.repository.realization.Order;
-import com.example.MiraiElectronics.repository.realization.OrderItem;
-import com.example.MiraiElectronics.repository.realization.User;
+import com.example.MiraiElectronics.repository.JPA.interfaces.OrderRepository;
+import com.example.MiraiElectronics.repository.JPA.realization.Order;
+import com.example.MiraiElectronics.repository.JPA.realization.OrderItem;
+import com.example.MiraiElectronics.repository.JPA.realization.User;
 import com.example.MiraiElectronics.repository.repositoryEnum.TransactionType;
 import com.example.MiraiElectronics.service.Generic.GenericEntityService;
 import org.springframework.http.ResponseEntity;

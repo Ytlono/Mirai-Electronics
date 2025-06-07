@@ -1,7 +1,7 @@
 package com.example.MiraiElectronics.Mapper;
 
 import com.example.MiraiElectronics.dto.BrandDTO;
-import com.example.MiraiElectronics.repository.realization.Brand;
+import com.example.MiraiElectronics.repository.JPA.realization.Brand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

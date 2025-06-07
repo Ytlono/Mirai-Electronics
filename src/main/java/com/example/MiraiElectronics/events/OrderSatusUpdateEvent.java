@@ -1,6 +1,6 @@
 package com.example.MiraiElectronics.events;
 
-import com.example.MiraiElectronics.repository.realization.Order;
+import com.example.MiraiElectronics.repository.JPA.realization.Order;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
