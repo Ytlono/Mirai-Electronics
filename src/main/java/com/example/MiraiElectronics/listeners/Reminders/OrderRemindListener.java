@@ -2,9 +2,9 @@ package com.example.MiraiElectronics.listeners.Reminders;
 
 import com.example.MiraiElectronics.events.OrderSatusUpdateEvent;
 import com.example.MiraiElectronics.repository.JPA.realization.User;
-import com.example.MiraiElectronics.service.CartItemService;
-import com.example.MiraiElectronics.service.JavaMailSenderService;
-import com.example.MiraiElectronics.service.OrderService;
+import com.example.MiraiElectronics.service.cart.CartItemService;
+import com.example.MiraiElectronics.service.notifications.JavaMailSenderService;
+import com.example.MiraiElectronics.service.order.OrderService;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 

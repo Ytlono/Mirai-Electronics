@@ -1,8 +1,7 @@
 package com.example.MiraiElectronics.controller;
 
-import com.example.MiraiElectronics.service.ElasticsearchService;
+import com.example.MiraiElectronics.service.catalog.ElasticsearchService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

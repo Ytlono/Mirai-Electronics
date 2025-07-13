@@ -3,7 +3,7 @@ package com.example.MiraiElectronics.schedulers;
 
 import com.example.MiraiElectronics.events.AbandonedCartDetectedEvent;
 import com.example.MiraiElectronics.repository.JPA.realization.CartItem;
-import com.example.MiraiElectronics.service.CartItemService;
+import com.example.MiraiElectronics.service.cart.CartItemService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Scheduled;

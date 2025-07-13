@@ -2,8 +2,8 @@ package com.example.MiraiElectronics.controller;
 
 import com.example.MiraiElectronics.dto.OrderRequest;
 import com.example.MiraiElectronics.dto.OrderStateUpdateDTO;
-import com.example.MiraiElectronics.service.CustomUserDetails;
-import com.example.MiraiElectronics.service.OrderService;
+import com.example.MiraiElectronics.service.auth.CustomUserDetails;
+import com.example.MiraiElectronics.service.order.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

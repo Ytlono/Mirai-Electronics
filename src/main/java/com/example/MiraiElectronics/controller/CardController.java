@@ -1,8 +1,8 @@
 package com.example.MiraiElectronics.controller;
 
 import com.example.MiraiElectronics.dto.CardDTO;
-import com.example.MiraiElectronics.service.CardService;
-import com.example.MiraiElectronics.service.CustomUserDetails;
+import com.example.MiraiElectronics.service.payment.CardService;
+import com.example.MiraiElectronics.service.auth.CustomUserDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;

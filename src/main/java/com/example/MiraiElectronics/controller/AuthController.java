@@ -3,15 +3,13 @@ package com.example.MiraiElectronics.controller;
 import com.example.MiraiElectronics.dto.AuthRequest;
 import com.example.MiraiElectronics.dto.RegisterDTO;
 import com.example.MiraiElectronics.dto.response.AuthResponse;
-import com.example.MiraiElectronics.service.AuthService;
-import com.example.MiraiElectronics.service.ConfirmationService;
-import com.example.MiraiElectronics.service.JwtService;
+import com.example.MiraiElectronics.service.auth.AuthService;
+import com.example.MiraiElectronics.service.auth.ConfirmationService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 

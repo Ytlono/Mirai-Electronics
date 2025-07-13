@@ -1,7 +1,7 @@
 package com.example.MiraiElectronics.listeners.Reminders;
 
-import com.example.MiraiElectronics.service.CartItemService;
-import com.example.MiraiElectronics.service.JavaMailSenderService;
+import com.example.MiraiElectronics.service.cart.CartItemService;
+import com.example.MiraiElectronics.service.notifications.JavaMailSenderService;
 
 import java.util.List;
 

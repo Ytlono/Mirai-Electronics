@@ -1,7 +1,7 @@
 package com.example.MiraiElectronics.controller;
 
 import com.example.MiraiElectronics.dto.BrandDTO;
-import com.example.MiraiElectronics.service.BrandService;
+import com.example.MiraiElectronics.service.catalog.BrandService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

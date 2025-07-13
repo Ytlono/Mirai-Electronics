@@ -1,9 +1,9 @@
 package com.example.MiraiElectronics.controller;
 
-import com.example.MiraiElectronics.service.CartItemService;
-import com.example.MiraiElectronics.service.CartService;
-import com.example.MiraiElectronics.service.CustomUserDetails;
-import com.example.MiraiElectronics.service.ProductServices.ProductService;
+import com.example.MiraiElectronics.service.cart.CartItemService;
+import com.example.MiraiElectronics.service.cart.CartService;
+import com.example.MiraiElectronics.service.auth.CustomUserDetails;
+import com.example.MiraiElectronics.service.catalog.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -36,7 +36,7 @@ public class CartController extends BaseController{
     public ResponseEntity<?> getCartItem(@RequestParam Long itemId,
                                          @AuthenticationPrincipal CustomUserDetails userDetails) {
         return ResponseEntity.ok(
-                cartItemService.getByIdForUser(
+                cartItemService.getById(
                         itemId,getFullUserOrThrow(userDetails))
         );
     }

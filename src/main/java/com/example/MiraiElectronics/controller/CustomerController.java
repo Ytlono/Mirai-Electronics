@@ -2,8 +2,8 @@ package com.example.MiraiElectronics.controller;
 
 import com.example.MiraiElectronics.dto.UpdateUserDataDTO;
 import com.example.MiraiElectronics.repository.JPA.realization.User;
-import com.example.MiraiElectronics.service.CustomUserDetails;
-import com.example.MiraiElectronics.service.UserService;
+import com.example.MiraiElectronics.service.auth.CustomUserDetails;
+import com.example.MiraiElectronics.service.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

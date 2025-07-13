@@ -4,7 +4,7 @@ import com.example.MiraiElectronics.dto.FilterDTO;
 import com.example.MiraiElectronics.dto.ProductDTO;
 import com.example.MiraiElectronics.dto.UpdatePrice;
 import com.example.MiraiElectronics.repository.JPA.realization.Product;
-import com.example.MiraiElectronics.service.ProductServices.ProductService;
+import com.example.MiraiElectronics.service.catalog.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
