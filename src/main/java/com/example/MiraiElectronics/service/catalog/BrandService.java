@@ -28,7 +28,7 @@ public class BrandService extends GenericEntityService<Brand, Long> {
 
     public Brand updateBrand(Long id,BrandDTO brandDTO){
         Brand brand = findById(id);
-        brandMapper.updateBrand(brandDTO,brand);
+        brandMapper.updateBrand(brandDTO,findById(id));
         return brand;
     }
 }
